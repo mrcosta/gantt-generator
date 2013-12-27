@@ -29,9 +29,7 @@ public class Gantt {
 		config.setAllowAccurateTaskBar(false);
 		config.setFillInvalidArea(true);
 		config.setShowTaskInfoBehindTaskBar(true);
-		
-		
-		
+
 		GanttModel model = new GanttModel();
 		
 		model.setKickoffTime(new Time(1000));
@@ -45,14 +43,13 @@ public class Gantt {
 		model.addTask(new Task[]{task1, task2});
 		gantt.setModel(model);		
 		
-		String filePath = "lib/xxx.png";
+		String filePath = "gantt/gantt.png";
 		try {
 			gantt.generateImageFile(filePath);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
 	}
 
 }
