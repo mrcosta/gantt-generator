@@ -1,0 +1,7 @@
+.idea
+bin
+.settings
+.classpath
+gantt-generator.iml
+.directory
+.project
