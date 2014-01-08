@@ -317,7 +317,7 @@ public class GanttChart extends JScrollPane implements GanttModelListener, Prope
 	/**
 	 * Set selected tasks.
 	 * 
-	 * @param task
+	 * @param tasks
 	 * @since 0.3.4
 	 */
 	public void setSelectedTasks(Task... tasks) {
