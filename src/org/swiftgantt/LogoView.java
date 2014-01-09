@@ -20,7 +20,7 @@ public class LogoView extends BaseView {
 
 	private static final long serialVersionUID = 1L;
 	protected LogoViewUI lvUI = null;
-	private String text = "SwiftGantt";
+	private String text = "Mateus";
 
 	public LogoView(GanttChart ganttChart) {
 		super(ganttChart);

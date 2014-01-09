@@ -109,7 +109,7 @@ public abstract class BaseTimeAxis implements TimeAxis {
 				logger.debug("Paint for TimeAxisScaleView");
 			}
 			// Draw 1st row of Chart head.
-			g.setColor(gantt.getConfig().getGanttChartBackColor());
+			g.setColor(gantt.getConfig().getGanttChartBackColor(Color.RED));
 			g.fillRect(comRect.x, 0, comRect.width - 1, row_height); // Background
 			g.setColor(Color.black);
 			g.drawRect(comRect.x, 0, comRect.width - 1, row_height); // Border
@@ -137,7 +137,7 @@ public abstract class BaseTimeAxis implements TimeAxis {
 			h = comRect.height - 1;
 			drawMinorTimeScaleBackground(comRect.x, 0, h);
 			if (logger.isDebugEnabled()) {
-				logger.debug("The gantt chart view back color is " + gantt.getConfig().getGanttChartBackColor());
+				logger.debug("The gantt chart view back color is " + gantt.getConfig().getGanttChartBackColor(Color.RED));
 			}
 			// Draw row sperator lines.
 			//			drawRowSperator(height, componentRect.width);

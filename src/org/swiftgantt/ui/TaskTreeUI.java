@@ -3,6 +3,7 @@ package org.swiftgantt.ui;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
+import java.util.List;
 
 import javax.swing.JComponent;
 import javax.swing.plaf.ComponentUI;
@@ -74,53 +75,27 @@ public class TaskTreeUI extends BaseUI {
 				|| super.ganttChart.getModel().getTaskTreeModel() == null){
 			return;
 		}
-		Task root = (Task) super.ganttChart.getModel().getTaskTreeModel().getRoot();
-		int rowNum = 0;
-		for (int i = 0; i < root.getChildCount(); i++) {
-			Task task = (Task) root.getChildAt(i);
-			Task nextTask = ((i + 1) < root.getChildCount()) ? (Task) root.getChildAt(i + 1) : null;
-			rowNum = drawTask(g, task, nextTask, rowNum);//drawTask() knows what's the next task row num.
-		}
+
+        List<Task> list = super.ganttChart.getModel().getTasksByBFS();
+
+        int rowNum = 0;
+        for (Task t: list) {
+            rowNum = drawTask(g, t, rowNum);//drawTask() knows what's the next task row num.
+        }
 	}
 
-	/*
-	 * return currrent row number after drawn this task and it's sub-tasks.
-	 */
-	private int drawTask(Graphics g, Task task, Task nextSibling, int rowNum) {
-		String next = nextSibling != null ? nextSibling.getName() : "";
-		if (logger.isDebugEnabled()) {
-			logger.debug("Paint task " + task + " at row " + rowNum + " to next " + next + " for task tree view.");
-		}
+    private int drawTask(Graphics g, Task task, int rowNum) {
+        int x1 = rowNum * cellWidth - hScrollOffset;
+        int y1 = rowNum * rowHeight;
 
-		int offset = 0;
-		int x1 = task.getLevel() * cellWidth - hScrollOffset;
-		int y1 = rowNum * rowHeight;
-		// Draw connector line from this task to first child task.
-		g.drawLine(x1, y1 - cellWidth, x1, y1 + cellWidth);
-		// Draw connector line as background first, from this task to next sibling task.
-		if (nextSibling != null) { // If next sibling is existed, we need lind to it. 
-			logger.debug("To next sibling: " + nextSibling.getName());
-			offset += task.getTasksCount();
-			int y2 = (rowNum + offset + 1) * rowHeight;
-			g.drawLine(x1, y1 + cellWidth, x1, y2 + cellWidth);
-		}
+        Rectangle taskRect = new Rectangle(x1, y1, taskTreeView.getWidth(), rowHeight);
 
-		// The rectangle for each tasks's area.
-		Rectangle taskRect = new Rectangle(x1, y1, taskTreeView.getWidth(), rowHeight);
-		//Draw connection.
-		this.drawConnection(g, taskRect);
-		// Draw all children recursively.
-		if (!task.isLeaf()) {// Recursive to children.
-			this.drawNode(g, taskRect);
-			for (int i = 0; i < task.getChildCount(); i++) {
-				Task curTask = (Task) task.getChildAt(i);
-				Task nextTask = ((i + 1) < task.getChildCount()) ? (Task) task.getChildAt(i + 1) : null;
-				rowNum = drawTask(g, curTask, nextTask, ++rowNum);
-			}
-		}
-		this.drawLabel(g, task.getName(), taskRect);
-		return rowNum;
-	}
+        this.drawLabel(g, task.getName(), taskRect);
+
+        System.out.println(task.getName());
+
+        return rowNum + 2;
+    }
 
 	/*
 	 * Draw connection from left center tree node to label.

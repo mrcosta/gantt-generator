@@ -22,10 +22,17 @@ public class Gantt {
 		Config config = gantt.getConfig();		
 		config.setTimeUnitWidth(25);
 		config.setBlankStepsToDeadline(0);
-		config.setBlankStepsToKickoffTime(0);		
+		config.setBlankStepsToKickoffTime(0);
 		config.setDeadlineBackColor(Color.WHITE);
 		config.setKickoffTimeBackColor(Color.WHITE);
-		
+        config.setGanttChartBackColor(Color.WHITE);// ---- change the century column color
+        config.setTaskTreeViewBackColor(Color.WHITE);
+        config.setTaskBarBackColor(Color.GRAY);
+
+        //config.setRestoutTimeBackColor(Color.RED);
+        //config.setSelectionColor(Color.RED);
+        //config.setCurrentTimeBackColor(Color.RED);
+
 		config.setAllowAccurateTaskBar(false);
 		config.setFillInvalidArea(true);
 		config.setShowTaskInfoBehindTaskBar(true);
@@ -37,12 +44,13 @@ public class Gantt {
 		
 		Task task1 = new Task("1", new Time(1000), new Time(1001));
 		Task task2 = new Task("2", new Time(1013), new Time(1018));
-		
+        Task task3 = new Task("3", new Time(1005), new Time(1008));
+
 		task2.addPredecessor(task1);
-		
-		model.addTask(new Task[]{task1, task2});
-		gantt.setModel(model);		
-		
+
+		model.addTask(new Task[]{task1, task2, task3});
+		gantt.setModel(model);
+
 		String filePath = "gantt/gantt.png";
 		try {
 			gantt.generateImageFile(filePath);

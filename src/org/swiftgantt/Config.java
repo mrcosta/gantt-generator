@@ -130,8 +130,9 @@ public class Config {
 
 	/**
 	 * Get back color of Gantt chart.
-	 */
-	public Color getGanttChartBackColor() {
+     * @param red
+     */
+	public Color getGanttChartBackColor(Color red) {
 		return ganttChartBackColor;
 	}
 

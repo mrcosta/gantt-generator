@@ -59,10 +59,8 @@ public class LogoViewUI extends LabelUI {
 		String brand = logoView.getText();
 		if (brand != null) {
 			logger.debug("Text: " + brand);
-			g.setColor(new Color(109, 135, 75));
-			g.drawChars(brand.toCharArray(), 0, 5, 20, 32);
-			g.setColor(new Color(19, 128, 168));
-			g.drawChars(brand.toCharArray(), 5, brand.length() - 5, width / 2, 32);
+			g.setColor(Color.GRAY);
+			g.drawChars(brand.toCharArray(), 0, brand.length(), 20, 32);
 		}
 		//
 		g.setColor(Color.black);
