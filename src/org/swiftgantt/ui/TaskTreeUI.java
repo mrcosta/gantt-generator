@@ -1,8 +1,6 @@
 package org.swiftgantt.ui;
 
-import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.Rectangle;
+import java.awt.*;
 import java.util.List;
 
 import javax.swing.JComponent;
@@ -76,25 +74,22 @@ public class TaskTreeUI extends BaseUI {
 			return;
 		}
 
-        List<Task> list = super.ganttChart.getModel().getTasksByBFS();
+        List<Task> tasks = super.ganttChart.getModel().getTasksByBFS();
 
-        int rowNum = 0;
-        for (Task t: list) {
-            rowNum = drawTask(g, t, rowNum);//drawTask() knows what's the next task row num.
-        }
+        drawTask(tasks, g);//drawTask() knows what's the next task row num.
 	}
 
-    private int drawTask(Graphics g, Task task, int rowNum) {
-        int x1 = rowNum * cellWidth - hScrollOffset;
-        int y1 = rowNum * rowHeight;
+    private void drawTask(List<Task> tasks, Graphics g) {
+        int rowNum = 0;
 
-        Rectangle taskRect = new Rectangle(x1, y1, taskTreeView.getWidth(), rowHeight);
+        for (Task task : tasks) {
+            int x1 = 150;
+            int y1 = rowNum * rowHeight;
+            Rectangle taskRect = new Rectangle(x1, y1, taskTreeView.getWidth(), rowHeight);
+            this.drawLabel(g, task.getName(), taskRect);
 
-        this.drawLabel(g, task.getName(), taskRect);
-
-        System.out.println(task.getName());
-
-        return rowNum + 2;
+            rowNum++;
+        }
     }
 
 	/*

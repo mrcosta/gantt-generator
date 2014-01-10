@@ -48,7 +48,7 @@ public class YearlyTimeAxis extends BaseNoRestoutTimeAxis {
 			}
 		}
 		String centurySuffix = ResourceManager.getInstance().getString("Gantt.TimeAxis.Year.Century");
-		return "";//century + prefix + centurySuffix;
+		return "TIME";//century + prefix + centurySuffix;
 	}
 
 }

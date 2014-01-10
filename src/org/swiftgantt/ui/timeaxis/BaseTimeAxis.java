@@ -164,13 +164,6 @@ public abstract class BaseTimeAxis implements TimeAxis {
 	 */
 	protected abstract void drawMinorTimeScaleBackground(int x, int y, int height);
 
-	/**
-	 * What the step of current time in the Gantt chart is.
-	 * 
-	 * @param step
-	 * @return
-	 * @since 0.3.1
-	 */
 	protected int getCurrentTimeStep() {
 		Time thisTime = new Time();
 		int step = TimeAxisUtils.getTimeIntervalByTimeUnit(gantt.getTimeUnit(), this.firstStepOfChart, thisTime) + 1;
@@ -238,7 +231,7 @@ public abstract class BaseTimeAxis implements TimeAxis {
 		g.fillRect(x, y, step_length, height);
 		// I found the way to render transparent, so give up this solution.
 		//PaintHelper.fillBevelFoggyRect(g, x, y, step_length, height);
-		g.setColor(Color.black);
+		g.setColor(Color.WHITE);
 		g.drawRect(x, y, step_length, height);
 	}
 
