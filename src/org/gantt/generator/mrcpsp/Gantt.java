@@ -14,17 +14,17 @@ import org.swiftgantt.ui.TimeUnit;
 public class Gantt {
 
     private Task tasks[];
-    private String fileName;
+    private String filePath;
 
-    public Gantt(Task[] tasks, String fileName) {
+    public Gantt(Task[] tasks, String filePath) {
         this.tasks = tasks;
-        this.fileName = fileName;
+        this.filePath = filePath;
     }
 
     public Gantt() {
     }
 
-    public void execute() {
+    public void generateDiagram() {
 		GanttChart gantt = new GanttChart();
 		
 		gantt.setTimeUnit(TimeUnit.Year);
@@ -60,7 +60,6 @@ public class Gantt {
 
 		gantt.setModel(model);
 
-		String filePath = "gantt/" + fileName + ".png";
 		try {
 			gantt.generateImageFile(filePath);
 		} catch (IOException e) {
