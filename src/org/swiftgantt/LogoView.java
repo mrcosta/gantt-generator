@@ -2,6 +2,7 @@ package org.swiftgantt;
 
 import javax.swing.UIManager;
 
+import org.gantt.generator.mrcpsp.Gantt;
 import org.swiftgantt.ui.LogoViewUI;
 
 /**
@@ -20,7 +21,7 @@ public class LogoView extends BaseView {
 
 	private static final long serialVersionUID = 1L;
 	protected LogoViewUI lvUI = null;
-	private String text = "Mateus";
+	private String text = Gantt.fileName;
 
 	public LogoView(GanttChart ganttChart) {
 		super(ganttChart);

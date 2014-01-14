@@ -15,6 +15,7 @@ public class Gantt {
 
     private Task tasks[];
     private String filePath;
+    public static String fileName;
 
     public Gantt(Task[] tasks, String filePath) {
         this.tasks = tasks;
@@ -25,6 +26,9 @@ public class Gantt {
     }
 
     public void generateDiagram() {
+        filePath = "gantt/test.png";
+        fileName = this.getFileNameWithoutExtension(filePath);
+
 		GanttChart gantt = new GanttChart();
 		
 		gantt.setTimeUnit(TimeUnit.Year);
@@ -43,21 +47,18 @@ public class Gantt {
 		config.setFillInvalidArea(true);
 		config.setShowTaskInfoBehindTaskBar(true);
 
-		/*Task task1 = new Task("1", new Time(1000), new Time(1001));
+		Task task1 = new Task("1", new Time(1000), new Time(1001));
 		Task task2 = new Task("2", new Time(1013), new Time(1018));
         Task task3 = new Task("3", new Time(1005), new Time(1008));
 
 		task2.addPredecessor(task1);
 
-        fileName = "xxx";
-        tasks = new Task[]{task1, task2, task3};*/
+        tasks = new Task[]{task1, task2, task3};
 
         GanttModel model = new GanttModel();
         model.addTask(tasks);
-
         model.setKickoffTime(new Time(1000));
         model.setDeadline(new Time(model.getTaskTreeModel().getLatestTask().getEnd().getYear() + 2)); // put makespan here (18 for this case)  and more 2 units just to leave some space
-
 		gantt.setModel(model);
 
 		try {
@@ -67,5 +68,13 @@ public class Gantt {
 			e.printStackTrace();
 		}
 	}
+
+    private String getFileNameWithoutExtension(String filePath) {
+        String pathArray[] = filePath.split("/");
+        String fileName = pathArray[pathArray.length - 1];
+        String fileNameWithoutExtension = fileName.substring(0, fileName.indexOf('.'));
+
+        return fileNameWithoutExtension;
+    }
 
 }
