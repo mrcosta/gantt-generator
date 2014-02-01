@@ -58,7 +58,7 @@ public class Gantt {
         GanttModel model = new GanttModel();
         model.addTask(tasks);
         model.setKickoffTime(new Time(1000));
-        model.setDeadline(new Time(model.getTaskTreeModel().getLatestTask().getEnd().getYear() + 2)); // put makespan here (18 for this case)  and more 2 units just to leave some space
+        model.setDeadline(new Time(model.getTaskTreeModel().getLatestTask().getEnd().getYear() + 3)); // put makespan here (18 for this case)  and more 2 units just to leave some space
 		gantt.setModel(model);
 
 		try {

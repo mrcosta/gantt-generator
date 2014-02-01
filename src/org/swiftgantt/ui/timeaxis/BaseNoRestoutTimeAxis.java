@@ -90,7 +90,7 @@ public abstract class BaseNoRestoutTimeAxis extends BaseTimeAxis {
 			g.setColor(config.getWorkingTimeBackColor());
 			g.fillRect(x + super.config.getTimeUnitWidth() * i, y, super.config.getTimeUnitWidth(), height);
 			// Draw border for each step.
-			g.setColor(new Color(240, 240, 240));
+			g.setColor(Color.GRAY);
 			g.drawRect(x + super.config.getTimeUnitWidth() * i, y, super.config.getTimeUnitWidth(), height);
 		}
 
